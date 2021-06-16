@@ -1,6 +1,9 @@
 import React,{useContext}  from "react";
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import {LocalizationContent}  from "../../Components/LocalizationContent";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 const styles = StyleSheet.create({
    contenttLine:{ 
@@ -29,18 +32,27 @@ const styles = StyleSheet.create({
    }
 });
 
-const MainContent = () => {
 
-  const {translations, appLanguage} = useContext(LocalizationContent);
+const Stack = createStackNavigator();
+const MainContent = () => {
+  
+  const {translations, Language} = useContext(LocalizationContent);
+
+  const linking = {
+    prefixes: ['https://app.example.com'],
+  };
 
 
   return(
     <View>
       <View style={styles.contenttLine}>
-        <View style={styles.contentText}>
-          <Image source={require("../../images/icon1.png")} style={styles.icon} />
-           <Text >{translations.main_title1}</Text>
-        </View>
+        <NavigationContainer linking={linking} >
+          <View style={styles.contentText}>
+            <Image source={require("../../images/icon1.png")} style={styles.icon} />
+            <Text >{translations.main_title1}</Text>
+          </View>
+        </NavigationContainer>
+
         <View style={styles.contentText}>
           <Image source={require("../../images/icon3.png")} style={styles.icon} />
            <Text>{translations.main_title2}</Text>

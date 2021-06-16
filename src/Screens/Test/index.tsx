@@ -29,8 +29,6 @@ const Test = () => {
       </View>
     </ImageBackground>
   )
-
-  
 }
 
 export default Test;
